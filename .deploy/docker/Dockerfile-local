@@ -1,0 +1,8 @@
+FROM alpine:latest
+
+COPY .env /usr/local/bin/.env
+COPY .deploy/docker/docker-entrypoint-local.sh /
+COPY target/x86_64-unknown-linux-musl/release/web_server /usr/local/bin/web_server
+
+WORKDIR /usr/local/bin
+ENTRYPOINT ["sh", "/docker-entrypoint-local.sh"]
